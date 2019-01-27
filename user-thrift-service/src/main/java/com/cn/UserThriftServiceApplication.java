@@ -1,4 +1,4 @@
-package com.cn.userthriftservice;
+package com.cn;
 
 import io.shardingjdbc.core.api.MasterSlaveDataSourceFactory;
 import org.springframework.boot.SpringApplication;

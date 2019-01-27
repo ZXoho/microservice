@@ -1,12 +1,12 @@
 dataSources:
   db_master: !!com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.jdbc.Driver
-    jdbcUrl: jdbc:mysql://192.168.1.2:3339/role?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    jdbcUrl: jdbc:mysql://192.168.1.4:3339/role?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 8799
   db_slave: !!com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.jdbc.Driver
-    jdbcUrl: jdbc:mysql://192.168.1.2:3340/role?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    jdbcUrl: jdbc:mysql://192.168.1.4:3340/role?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 8799
 masterSlaveRule:
