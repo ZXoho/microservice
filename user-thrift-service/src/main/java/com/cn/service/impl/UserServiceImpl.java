@@ -5,6 +5,7 @@ import com.cn.thrift.user.User;
 import com.cn.thrift.user.UserService;
 import org.apache.thrift.TException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author zxoho
  * @date 19-1-27 下午3:35
  */
+@Service
 public class UserServiceImpl implements UserService.Iface {
 
     @Autowired

@@ -27,8 +27,8 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class ThriftService {
 
-    @Value("${service.port}")
-    private int servicePort;
+    @Value("${server.port}")
+    private int serverPort;
 
 //    @Autowired
 //    private UserService.Iface userService;
@@ -56,7 +56,7 @@ public class ThriftService {
     @PostConstruct
     public void startThriftServer() {
         try {
-            TServerSocket serverSocket = new TServerSocket(servicePort);
+            TServerSocket serverSocket = new TServerSocket(serverPort);
             TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory();
             //创建多个服务processor
             UserService.Processor<UserService.Iface> userProcessor = new UserService.Processor<UserService.Iface>(new UserServiceImpl());
@@ -73,7 +73,7 @@ public class ThriftService {
                     .minWorkerThreads(1000)
                     .maxWorkerThreads(1000);
             TServer tServer = new TThreadPoolServer(args);
-            System.out.println("开启thrift服务器，端口：" + servicePort);
+            System.out.println("开启thrift服务器，端口：" + serverPort);
             tServer.serve();
         } catch (Exception e) {
             e.printStackTrace();
