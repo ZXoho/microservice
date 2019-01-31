@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author zxoho
@@ -22,10 +23,11 @@ public class UserServiceController {
     private UserServiceProvider userServiceProvider;
 
     @GetMapping("/findOne")
+    @ResponseBody
     public User findOne(@RequestParam("userId")String userId,
                         @RequestParam("companyId")String companyId) {
         try {
-            User result =  userServiceProvider.getUserService().findOne(companyId, userId);
+            User result =  userServiceProvider.getUserService().findOne(userId, companyId);
             return result;
         } catch (Exception e) {
             e.printStackTrace();

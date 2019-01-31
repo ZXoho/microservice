@@ -30,53 +30,53 @@ public class ThriftService {
     @Value("${server.port}")
     private int serverPort;
 
-//    @Autowired
-//    private UserService.Iface userService;
-//    @Autowired
-//    private RoleService.Iface roleService;
-//
-//    @PostConstruct
-//    public void startThriftServer() {
-//        TProcessor processor = new UserService.Processor<>(userService);
-//        TNonblockingServerSocket socket = null;
-//        try {
-//            socket = new TNonblockingServerSocket(servicePort);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        TNonblockingServer.Args args = new TNonblockingServer.Args(socket);
-//        args.processor(processor);
-//        args.transportFactory(new TFramedTransport.Factory());
-//        args.protocolFactory(new TBinaryProtocol.Factory());
-//
-//        TServer server = new TNonblockingServer(args);
-//        server.serve();
-//    }
+    @Autowired
+    private UserService.Iface userService;
+    @Autowired
+    private RoleService.Iface roleService;
 
     @PostConstruct
     public void startThriftServer() {
+        TProcessor processor = new UserService.Processor<>(userService);
+        TNonblockingServerSocket socket = null;
         try {
-            TServerSocket serverSocket = new TServerSocket(serverPort);
-            TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory();
-            //创建多个服务processor
-            UserService.Processor<UserService.Iface> userProcessor = new UserService.Processor<UserService.Iface>(new UserServiceImpl());
-            RoleService.Processor<RoleService.Iface> roleProcessor = new RoleService.Processor<RoleService.Iface>(new RoleServiceImpl());
-
-            //注册服务
-            TMultiplexedProcessor processors = new TMultiplexedProcessor();
-            processors.registerProcessor("userService", userProcessor);
-            processors.registerProcessor("roleService", roleProcessor);
-
-            TThreadPoolServer.Args args = new TThreadPoolServer.Args(serverSocket)
-                    .protocolFactory(protocolFactory)
-                    .processor(processors)
-                    .minWorkerThreads(1000)
-                    .maxWorkerThreads(1000);
-            TServer tServer = new TThreadPoolServer(args);
-            System.out.println("开启thrift服务器，端口：" + serverPort);
-            tServer.serve();
+            socket = new TNonblockingServerSocket(serverPort);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        TNonblockingServer.Args args = new TNonblockingServer.Args(socket);
+        args.processor(processor);
+        args.transportFactory(new TFramedTransport.Factory());
+        args.protocolFactory(new TBinaryProtocol.Factory());
+
+        TServer server = new TNonblockingServer(args);
+        server.serve();
     }
+
+//    @PostConstruct
+//    public void startThriftServer() {
+//        try {
+//            TServerSocket serverSocket = new TServerSocket(serverPort);
+//            TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory();
+//            //创建多个服务processor
+//            UserService.Processor<UserService.Iface> userProcessor = new UserService.Processor<UserService.Iface>(new UserServiceImpl());
+//            RoleService.Processor<RoleService.Iface> roleProcessor = new RoleService.Processor<RoleService.Iface>(new RoleServiceImpl());
+//
+//            //注册服务
+//            TMultiplexedProcessor processors = new TMultiplexedProcessor();
+//            processors.registerProcessor("userService", userProcessor);
+//            processors.registerProcessor("roleService", roleProcessor);
+//
+//            TThreadPoolServer.Args args = new TThreadPoolServer.Args(serverSocket)
+//                    .protocolFactory(protocolFactory)
+//                    .processor(processors)
+//                    .minWorkerThreads(1000)
+//                    .maxWorkerThreads(1000);
+//            TServer tServer = new TThreadPoolServer(args);
+//            System.out.println("开启thrift服务器，端口：" + serverPort);
+//            tServer.serve();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
