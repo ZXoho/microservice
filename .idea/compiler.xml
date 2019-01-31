@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="apt-gate-way-zuul" />
         <module name="bill-dubbo-service" />
         <module name="bill-dubbo-service-api" />
         <module name="message-thrift-service-api" />

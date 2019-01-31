@@ -1,0 +1,13 @@
+server:
+  port: 8087
+
+zuul:
+  routes:
+    bill:
+      path: /bill/**
+      url: http://localhost:8086/bill/
+#      serivceId: bill-dubbo-service
+    user:
+      path: /user/**
+      url: http://localhost:8083/user/
+#      serviceId: user-edge-service
