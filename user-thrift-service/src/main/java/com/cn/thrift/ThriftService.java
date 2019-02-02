@@ -13,6 +13,7 @@ import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TNonblockingServerSocket;
 import org.apache.thrift.transport.TServerSocket;
+import org.apache.thrift.transport.TTransportException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,7 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class ThriftService {
 
-    @Value("${server.port}")
+    @Value("${service.port}")
     private int serverPort;
 
     @Autowired
@@ -41,7 +42,7 @@ public class ThriftService {
         TNonblockingServerSocket socket = null;
         try {
             socket = new TNonblockingServerSocket(serverPort);
-        } catch (Exception e) {
+        } catch (TTransportException e) {
             e.printStackTrace();
         }
         TNonblockingServer.Args args = new TNonblockingServer.Args(socket);
