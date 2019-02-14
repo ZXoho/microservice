@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="apt-gate-way-zuul" />
+        <module name="apt-gateway-zuul" />
         <module name="bill-dubbo-service" />
         <module name="bill-dubbo-service-api" />
+        <module name="demo" />
         <module name="message-thrift-service-api" />
         <module name="user-edge-service" />
         <module name="user-thrift-service" />
