@@ -17,10 +17,5 @@ public class BillDubboServiceApplication {
         SpringApplication.run(BillDubboServiceApplication.class, args);
     }
 
-    @Bean
-    public DataSource dataSource() throws SQLException, IOException {
-        return MasterSlaveDataSourceFactory.createDataSource(ResourceUtils.getFile("classpath:sharing-jdbc.yml"));
-    }
-
 }
 

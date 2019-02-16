@@ -1,6 +1,7 @@
 thrift:
-  port: 8082
-  ip: localhost
+  user:
+    port: 8082
+    ip: user-service
 server:
   port: 8083
   name: user-edge-service
