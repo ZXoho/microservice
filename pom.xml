@@ -12,11 +12,11 @@
         <module>message-thrift-service-api</module>
         <module>user-thrift-service-api</module>
         <module>bill-dubbo-service-api</module>
-        <module>api-gate-way-zuul</module>
+        <module>api-gateway-zuul</module>
         <module>user-thrift-service</module>
         <module>user-edge-service</module>
         <module>bill-dubbo-service</module>
-        <module>bill-edge-service</module>
+        <module>bill--edge-service</module>
     </modules>
 
 
